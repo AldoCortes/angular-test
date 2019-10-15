@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <form [formGroup]="userForm" (ngSubmit)="ngOnSubmit()">  
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" formControlName="newCatch" placeholder="Which Pokemon do you want?" aria-label="Pokemon name" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Catch!</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6" *ngFor="let pokemon of store.pokemons">
+      <div class="card">
+        <img [src]="pokemon.image" class="card-img-top" [alt]="pokemon.name">
+        <div class="card-body">
+          <h5 class="card-title">{{ capitalize(pokemon.name) }}</h5>
+          <p class="card-text">ID: {{ pokemon.id }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!store.pokemons.length">
+    <div class="col-12">
+        <p class="text-center">No Pokemon captured yet</p>
+    </div>
+  </div>
+</div>
